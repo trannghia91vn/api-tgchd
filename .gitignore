@@ -4,3 +4,5 @@ node_modules
 config.env
 #tham chiếu
 references
+#bỏ json lock
+package-lock.json

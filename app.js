@@ -7,12 +7,12 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
 //Các gói bảo mật đơn giản trước
-const xssClean = require("xss-clean");
-const helmet = require("helmet");
+// const xssClean = require("xss-clean");
+// const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
-app.use(xssClean());
-app.use(helmet());
+// app.use(xssClean());
+// app.use(helmet());
 app.use(mongoSanitize());
 app.use(compression());
 
