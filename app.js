@@ -32,6 +32,10 @@ const myRateLimiting = rateLimit({
 app.use(myRateLimiting);
 //--------------------------------------
 
+app.use("/", (req, res, next) => {
+  console.log("Xin chào đến với api của boss Nghĩa");
+  next();
+});
 //Middleware quản lý route
 const authRouter = require("./routes/auth");
 const ordersRouter = require("./routes/orders");
