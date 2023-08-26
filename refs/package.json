@@ -1,0 +1,30 @@
+{
+  "name": "natour-learning",
+  "version": "1.0.0",
+  "description": "HỌc nodejs deeper với dự án đầu tiên",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "prod": "ENV_NAME=production nodemon server.js",
+    "import": "node scripts/importDataToDb.js --import",
+    "cleardb": "node scripts/importDataToDb.js --cleardb",
+    "debug": "nodemon --inspect server.js"
+  },
+  "author": "Nghĩa Bia",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.9.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.4",
+    "nodemon": "^3.0.1",
+    "xss-clean": "^0.1.4"
+  }
+}
