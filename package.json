@@ -7,6 +7,9 @@
     "dev": "nodemon server.js",
     "prod": "NODE_ENV=production node server.js"
   },
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "author": "Basushi",
   "license": "ISC",
   "dependencies": {
