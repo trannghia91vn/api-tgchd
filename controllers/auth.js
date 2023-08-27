@@ -81,6 +81,15 @@ exports.signIn = async (req, res, next) => {
     next(err);
   }
 };
+//Kiểm tra trước khi protect thì xem có cookie tồn tại không
+// nếu có thì tách jwt từ cookie ra và nhét nó vào authoriztio
+exports.prepareBeforeProtect = async (req, res, next) => {
+  if (req.cookies["jwt"]) {
+    const standardJwt = `Bearer ${req.cookies["jwt"]}`;
+    req.headers.authorization = standardJwt;
+  }
+  next();
+};
 exports.protect = async (req, res, next) => {
   //1. Kiểm tra trong headers có authorization chứa jwt không
   const { authorization } = req.headers;
