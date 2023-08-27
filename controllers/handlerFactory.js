@@ -18,7 +18,10 @@ exports.getDocs = async (req, res, next, model) => {
     console.log(req.query);
     const handler = new QueriesResource(model.find(), req.query);
     handler.filter().sort();
-    if (Object.keys(req.query).length > 0) handler.fields().pagination();
+    if (Object.keys(req.query).length > 0) {
+      if (req.query.fields) handler.fields();
+      if (req.query.pagination) handler.pagination();
+    }
     const docs = await handler.queried;
 
     return res.status(200).json({

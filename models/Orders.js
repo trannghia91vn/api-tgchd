@@ -34,7 +34,7 @@ const OrdersSchema = new Schema({
   status: {
     type: String,
     enum: ["nomoney", "money"],
-    default: "money",
+    default: "nomoney",
   },
   cart: {
     type: Array,

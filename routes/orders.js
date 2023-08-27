@@ -7,6 +7,7 @@ const {
   updateOrder,
   deleteOrder,
   sanitizeBodyDataOrder,
+  getDonCho,
 } = require("../controllers/orders");
 
 const router = express.Router();
@@ -14,6 +15,8 @@ const router = express.Router();
 router.route("/").get(protect, getOrders).post(sanitizeBodyDataOrder, addOrder);
 
 router.use(protect);
+
+router.route("/don-cho").get(getDonCho, getOrders);
 
 router.route("/:id").get(getOrder).patch(updateOrder).delete(deleteOrder);
 

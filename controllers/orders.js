@@ -7,6 +7,12 @@ const {
   deleteDoc,
 } = require("../controllers/handlerFactory");
 
+//Một số alias cho tiện
+exports.getDonCho = async (req, res, next) => {
+  req.query.status = "nomoney";
+  next();
+};
+
 exports.getOrders = async (req, res, next) => {
   await getDocs(req, res, next, OrdersModel);
 };

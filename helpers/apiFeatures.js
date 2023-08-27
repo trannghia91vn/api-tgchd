@@ -44,7 +44,7 @@ class QueriesResource {
     }
   }
   pagination() {
-    if (this.reqQueries.page) {
+    if (this.reqQueries.page && this.reqQueries.limit) {
       const reqPage = this.reqQueries.page || 1;
       const itemsPerPage = this.reqQueries.limit || 100;
       const skippedItems = (reqPage - 1) * itemsPerPage;
