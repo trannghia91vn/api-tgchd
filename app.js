@@ -2,6 +2,17 @@ const express = require("express");
 const app = express();
 const ErrorGlobal = require("./models/ErrorGlobal");
 
+//Test thêm cái pass lỗi cors
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+  next();
+});
+
 //Load enviroment variable, ưu tiên trước
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
