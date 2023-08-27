@@ -68,7 +68,7 @@ exports.signIn = async (req, res, next) => {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
     });
-    if (process.env.NODE_ENV === "production") cookie.secure = true;
+    // if (process.env.NODE_ENV === "production") cookie.secure = true;
     user.password = undefined;
     res.status(200).json({
       status: "success",
