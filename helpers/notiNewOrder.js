@@ -8,7 +8,7 @@ const sendMailNewOrder = async (info) => {
     year: "numeric",
   });
   const transporter = nodemailer.createTransport({
-    service: "gmai",
+    service: "gmail",
     auth: {
       user: process.env.HOST_GMAIL_NAME,
       pass: process.env.HOST_GMAIL_PASSWORD,
