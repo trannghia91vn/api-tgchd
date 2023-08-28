@@ -13,6 +13,7 @@ app.use(
       "http://localhost:3000",
       "https://quanlytranggiaocu.vercel.app",
       "https://tranggiaocudayhoc.com/",
+      "https://vercel.com/trannghia91vn/tranggiaocu-nextjs",
     ],
   })
 );
