@@ -4,7 +4,12 @@ const ErrorGlobal = require("./models/ErrorGlobal");
 
 //Test thêm cái pass lỗi cors
 const cors = require("cors");
-app.use(cors({ credentials: true, origin: ["http://localhost:3000"] }));
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000", "https://quanlytranggiaocu.vercel.app"],
+  })
+);
 
 //Load enviroment variable, ưu tiên trước
 const dotenv = require("dotenv");
