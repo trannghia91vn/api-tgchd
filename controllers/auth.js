@@ -67,15 +67,16 @@ exports.signIn = async (req, res, next) => {
     res.cookie("jwt", token, {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      secure: false,
     });
-    // if (process.env.NODE_ENV === "production") res.cookie.secure = true;
+    if (process.env.NODE_ENV === "production") res.cookie.secure = true;
     user.password = undefined;
     res.status(200).json({
       status: "success",
       data: {
         user,
         token,
-        message: "Hellow from be 8000",
+        message: "Hellow from be 8000 local",
       },
     });
   } catch (err) {
