@@ -6,7 +6,7 @@ const ErrorGlobal = require("./models/ErrorGlobal");
 const cors = require("cors");
 app.use(
   cors({
-    credentials: true,
+    // credentials: true,
     origin: ["http://localhost:3000", "https://quanlytranggiaocu.vercel.app"],
   })
 );
