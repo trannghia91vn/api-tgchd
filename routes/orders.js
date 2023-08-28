@@ -11,8 +11,6 @@ const {
 
 const router = express.Router();
 
-router.route("/client").post(addOrder);
-
 router.route("/").get(protect, getOrders).post(addOrder);
 
 router.use(protect);

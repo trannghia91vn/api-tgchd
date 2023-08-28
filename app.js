@@ -6,18 +6,7 @@ const ErrorGlobal = require("./models/ErrorGlobal");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
-app.use(
-  // cors({
-  //   // credentials: true,
-  //   origin: [
-  //     "http://localhost:3000",
-  //     "https://quanlytranggiaocu.vercel.app",
-  //     "https://tranggiaocudayhoc.com/",
-  //     "https://tranggiaocu-nextjs.vercel.app/",
-  //   ],
-  // })
-  cors()
-);
+app.use(cors());
 
 //Load enviroment variable, ưu tiên trước
 const dotenv = require("dotenv");
