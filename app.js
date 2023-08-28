@@ -7,15 +7,16 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(
-  cors({
-    // credentials: true,
-    origin: [
-      "http://localhost:3000",
-      "https://quanlytranggiaocu.vercel.app",
-      "https://tranggiaocudayhoc.com/",
-      "https://tranggiaocu-nextjs.vercel.app/",
-    ],
-  })
+  // cors({
+  //   // credentials: true,
+  //   origin: [
+  //     "http://localhost:3000",
+  //     "https://quanlytranggiaocu.vercel.app",
+  //     "https://tranggiaocudayhoc.com/",
+  //     "https://tranggiaocu-nextjs.vercel.app/",
+  //   ],
+  // })
+  cors()
 );
 
 //Load enviroment variable, ưu tiên trước
