@@ -9,7 +9,6 @@ const {
 
 //Một số alias cho tiện
 exports.getDonCho = async (req, res, next) => {
-  console.log(req.cookies);
   req.query.status = "nomoney";
   next();
 };

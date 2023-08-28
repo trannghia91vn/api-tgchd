@@ -1,5 +1,5 @@
 const express = require("express");
-const { protect, prepareBeforeProtect } = require("../controllers/auth");
+const { protect } = require("../controllers/auth");
 const {
   getOrders,
   getOrder,
@@ -12,12 +12,9 @@ const {
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(prepareBeforeProtect, protect, getOrders)
-  .post(sanitizeBodyDataOrder, addOrder);
+router.route("/").get(protect, getOrders).post(sanitizeBodyDataOrder, addOrder);
 
-router.use(prepareBeforeProtect, protect);
+router.use(protect);
 
 router.route("/don-cho").get(getDonCho, getOrders);
 

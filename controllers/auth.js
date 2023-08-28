@@ -68,40 +68,39 @@ exports.signIn = async (req, res, next) => {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
     });
-    // if (process.env.NODE_ENV === "production") cookie.secure = true;
+    if (process.env.NODE_ENV === "production") cookie.secure = true;
     user.password = undefined;
     res.status(200).json({
       status: "success",
       data: {
         user,
         token,
+        message: "Hellow from be 8000",
       },
     });
   } catch (err) {
     next(err);
   }
 };
-//Kiểm tra trước khi protect thì xem có cookie tồn tại không
-// nếu có thì tách jwt từ cookie ra và nhét nó vào authoriztio
-exports.prepareBeforeProtect = async (req, res, next) => {
-  if (req.cookies["jwt"]) {
-    const standardJwt = `Bearer ${req.cookies["jwt"]}`;
-    req.headers.authorization = standardJwt;
-  }
-  next();
-};
 exports.protect = async (req, res, next) => {
   //1. Kiểm tra trong headers có authorization chứa jwt không
   const { authorization } = req.headers;
-  if (
-    !authorization ||
-    !authorization.startsWith("Bearer") ||
-    authorization.length < 12
-  )
+  console.log(`Authorization in req: ${authorization}`);
+  console.log(`Cookies in req: ${req.cookies.jwt}`);
+
+  let token;
+  if (authorization && authorization.startsWith("Bearer")) {
+    token = authorization.split(" ")[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+  console.log(`Token in req: ${token}`);
+  if (!token) {
     return next(
       new ErrorGlobal("Token không hợp lệ, vui lòng đăng nhập lại đi", 401)
     );
-  const token = authorization.split(" ")[1];
+  }
+
   let username, iat;
   //2. Kiểm tra jwt hợp lệ không
   jsonwebtoken.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
@@ -126,6 +125,7 @@ exports.protect = async (req, res, next) => {
     }
     //Cuối cùng thì gán lại req.user để dùng về sau
     req.user = user;
+    console.log("Pass protect");
     next();
   } catch (err) {
     next(err);

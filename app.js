@@ -4,8 +4,6 @@ const ErrorGlobal = require("./models/ErrorGlobal");
 
 //Test thêm cái pass lỗi cors
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
 app.use(cors({ credentials: true, origin: ["http://localhost:3000"] }));
 
 //Load enviroment variable, ưu tiên trước
@@ -24,6 +22,8 @@ app.use(compression());
 
 //Đọc được json từ body
 app.use(express.json({ limit: "10kb" }));
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 //Giới hạn req data từ một user ip
 app.set("trust proxy", true);

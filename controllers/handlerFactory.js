@@ -15,7 +15,6 @@ exports.addDoc = async (req, res, next, model) => {
 const QueriesResource = require("../helpers/apiFeatures");
 exports.getDocs = async (req, res, next, model) => {
   try {
-    console.log(req.query);
     const handler = new QueriesResource(model.find(), req.query);
     handler.filter().sort();
     if (Object.keys(req.query).length > 0) {
@@ -23,7 +22,7 @@ exports.getDocs = async (req, res, next, model) => {
       if (req.query.pagination) handler.pagination();
     }
     const docs = await handler.queried;
-
+    console.log(docs);
     return res.status(200).json({
       status: "success",
       data: {
