@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(
   cors({
-    credentials: true,
+    // credentials: true,
     origin: [
       "http://localhost:3000",
       "https://quanlytranggiaocu.vercel.app",

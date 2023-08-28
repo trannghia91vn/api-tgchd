@@ -1,6 +1,6 @@
 exports.addDoc = async (req, res, next, model) => {
   try {
-    const doc = await model.create(req.standardData || req.body);
+    const doc = await model.create(req.body);
     return res.status(201).json({
       status: "success",
       data: {

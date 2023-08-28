@@ -6,13 +6,12 @@ const {
   addOrder,
   updateOrder,
   deleteOrder,
-  sanitizeBodyDataOrder,
   getDonTheoTrangThai,
 } = require("../controllers/orders");
 
 const router = express.Router();
 
-router.route("/").get(protect, getOrders).post(sanitizeBodyDataOrder, addOrder);
+router.route("/").get(protect, getOrders).post(addOrder);
 
 router.use(protect);
 
