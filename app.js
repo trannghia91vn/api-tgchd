@@ -36,7 +36,9 @@ app.use(compression());
 app.use(express.json({ limit: "10kb" }));
 
 //Giới hạn req data từ một user ip
-app.set("trust proxy", true);
+// app.set("trust proxy", true);
+app.set("trust proxy", 1);
+app.get("/ip", (request, response) => response.send(request.ip));
 const rateLimit = require("express-rate-limit");
 const myRateLimiting = rateLimit({
   //Max req trong khoảng thời gian
