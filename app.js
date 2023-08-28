@@ -9,7 +9,11 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000", "https://quanlytranggiaocu.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "https://quanlytranggiaocu.vercel.app",
+      "https://tranggiaocudayhoc.com/",
+    ],
   })
 );
 
