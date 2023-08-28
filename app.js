@@ -4,6 +4,8 @@ const ErrorGlobal = require("./models/ErrorGlobal");
 
 //Test thêm cái pass lỗi cors
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 app.use(
   cors({
     // credentials: true,

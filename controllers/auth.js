@@ -53,6 +53,7 @@ exports.signUp = async (req, res, next) => {
   }
 };
 exports.signIn = async (req, res, next) => {
+
   //1. check đủ username và password không
   const { username, password } = req.body;
   if (!username || !password)
