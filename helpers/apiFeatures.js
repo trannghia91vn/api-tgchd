@@ -8,7 +8,7 @@ class QueriesResource {
     this.reqQueries = reqQueries;
   }
   filter() {
-    const specialQuery = ["sort", "fields", "page", "limit"];
+    const specialQuery = ["sort", "fields", "page", "limit", "time"];
     const cloneReqQueries = { ...this.reqQueries };
     //Loại bỏ các key query đặc biệt nếu có
     specialQuery.forEach((item) => {
@@ -25,7 +25,31 @@ class QueriesResource {
 
     //Giả sử query như sau ?price=8,name="tèo"
     this.queried = this.queried.find(reqQueriedString);
+
     return this;
+  }
+  time() {
+    //Xử lý phần time theo tháng
+    if (this.reqQueries.time) {
+      const queryTime = this.reqQueries.time;
+      const firtDate = new Date(
+        `${new Date(queryTime).getFullYear()}-${
+          new Date(queryTime).getMonth() + 1
+        }-01`
+      );
+      const lastDate = new Date(
+        `${new Date(queryTime).getFullYear()}-${
+          new Date(queryTime).getMonth() + 1
+        }-30`
+      );
+
+      console.log("run query time");
+      console.log(lastDate);
+      this.queried = this.queried.find({
+        time: { $gt: firtDate, $lt: lastDate },
+      });
+      return this;
+    }
   }
   sort() {
     if (this.reqQueries.sort) {
@@ -37,6 +61,7 @@ class QueriesResource {
   }
   fields() {
     if (this.reqQueries.fields) {
+      console.log("Filter field query run ?");
       const fieldValues = this.reqQueries.fields.split(",");
       const fieldsString = fieldValues.join(" ");
       this.queried = this.queried.select(fieldsString);

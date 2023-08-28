@@ -7,7 +7,7 @@ const {
   updateOrder,
   deleteOrder,
   sanitizeBodyDataOrder,
-  getDonCho,
+  getDonTheoTrangThai,
 } = require("../controllers/orders");
 
 const router = express.Router();
@@ -16,7 +16,8 @@ router.route("/").get(protect, getOrders).post(sanitizeBodyDataOrder, addOrder);
 
 router.use(protect);
 
-router.route("/don-cho").get(getDonCho, getOrders);
+router.route("/don-cho").get(getDonTheoTrangThai("nomoney"), getOrders);
+router.route("/don-xong").get(getDonTheoTrangThai("money"), getOrders);
 
 router.route("/:id").get(getOrder).patch(updateOrder).delete(deleteOrder);
 

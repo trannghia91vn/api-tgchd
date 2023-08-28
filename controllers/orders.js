@@ -8,9 +8,11 @@ const {
 } = require("../controllers/handlerFactory");
 
 //Một số alias cho tiện
-exports.getDonCho = async (req, res, next) => {
-  req.query.status = "nomoney";
-  next();
+exports.getDonTheoTrangThai = (status) => {
+  return async (req, res, next) => {
+    req.query.status = status;
+    next();
+  };
 };
 
 exports.getOrders = async (req, res, next) => {

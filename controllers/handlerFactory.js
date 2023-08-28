@@ -16,10 +16,12 @@ const QueriesResource = require("../helpers/apiFeatures");
 exports.getDocs = async (req, res, next, model) => {
   try {
     const handler = new QueriesResource(model.find(), req.query);
-    handler.filter().sort();
+    handler.filter();
     if (Object.keys(req.query).length > 0) {
       if (req.query.fields) handler.fields();
       if (req.query.pagination) handler.pagination();
+      if (req.query.time) handler.time();
+      if (req.query.sort) handler.sort();
     }
     const docs = await handler.queried;
     console.log(docs);

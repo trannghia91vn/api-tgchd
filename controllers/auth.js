@@ -68,7 +68,7 @@ exports.signIn = async (req, res, next) => {
     res.cookie("jwt", token, {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
-      secure: false,
+      secure: true,
     });
     if (process.env.NODE_ENV === "production") res.cookie.secure = true;
     user.password = undefined;
@@ -87,16 +87,12 @@ exports.signIn = async (req, res, next) => {
 exports.protect = async (req, res, next) => {
   //1. Kiểm tra trong headers có authorization chứa jwt không
   const { authorization } = req.headers;
-  console.log(`Authorization in req: ${authorization}`);
-  console.log(`Cookies in req: ${req.cookies.jwt}`);
-
   let token;
   if (authorization && authorization.startsWith("Bearer")) {
     token = authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
-  console.log(`Token in req: ${token}`);
   if (!token) {
     return next(
       new ErrorGlobal("Token không hợp lệ, vui lòng đăng nhập lại đi", 401)
